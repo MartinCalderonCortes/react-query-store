@@ -1,7 +1,7 @@
 import { ProductList, useProducts } from ".."
 
 export const CompleteListPage = () => {
-  const { products, isFetching } = useProducts()
+  const { products, isFetching } = useProducts({})
 
   return (
     <div className="flex-col">

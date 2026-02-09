@@ -1,14 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
-import { productActions } from ".."
+import { Category, productActions } from ".."
 
-export const useProducts = () => {
+export const useProducts = ({ filtersOption } : { filtersOption?: Category }) => {
     const { data: products = [], error, isFetching } = useQuery({
-        queryKey: ['products'],
-        queryFn: () => productActions.getProducts({})
+        queryKey: ['products', { filtersOption } ],
+        queryFn: () => productActions.getProducts({ filterKey: filtersOption }),
+        staleTime: 1000 * 60 * 60
     })
-
-    console.log('useProducts', products);
-    
 
     return { products, error, isFetching  }
 }

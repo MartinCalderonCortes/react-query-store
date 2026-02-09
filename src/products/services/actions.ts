@@ -5,7 +5,17 @@ interface GetProductsOptions {
     filterKey?: string
 }
 
+const sleep = (seconds: number): Promise<void> => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve()
+        }, seconds)
+    })
+}
+
 export const getProducts = async ({ filterKey }: GetProductsOptions) => {
-    const { data } = await productsApi.get<Product[]>('/products')
+    await sleep(1000)
+    const url = !filterKey ? '/products' : `/products?category=${filterKey}`
+    const { data } = await productsApi.get<Product[]>(url)
     return data;
 }
