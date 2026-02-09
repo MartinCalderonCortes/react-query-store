@@ -3,10 +3,12 @@ export interface Product {
     title:       string;
     price:       number;
     description: string;
-    category:    string;
+    category:    Category;
     image:       string;
     rating:      Rating;
 }
+
+export type Category = "women's clothing" | "men's clothing"
 
 export interface Rating {
     rate:  number;
