@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product,
-  canFullDescription?: boolean
+  canFullDescription?: boolean,
+  prefetchProduct: (id: number) => void
 }
 
-export const ProductCard = ({ product, canFullDescription = false }: ProductCardProps) => {
+export const ProductCard = ({ product, canFullDescription = false, prefetchProduct }: ProductCardProps) => {
   
 
   const { id, category, title, description, image, price } = product
   return (
     <Link to={`/product/${ id }`}>
       <Card
+        onMouseEnter={() => prefetchProduct(id)} 
         className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
         <div className="w-full md:w-1/3 bg-white grid place-items-center">
           <Image src={image}
