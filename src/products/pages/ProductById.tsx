@@ -1,12 +1,18 @@
 import { useParams } from "react-router-dom"
 import { ProductCard, useProduct } from ".."
+import { useEffect } from "react"
 
 export const ProductById = () => {
 
   const { id } = useParams()
   const { product, isFetching } = useProduct({ id: +id! })
 
-  console.log('Product By Id', product)
+  useEffect(() => {
+    scrollTo({
+      top: 0
+    })
+
+  }, [])
 
   return (
     <div className="flex-col">
